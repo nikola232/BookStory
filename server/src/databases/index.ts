@@ -1,10 +1,11 @@
 import Sequelize from 'sequelize';
 import UserModel from '@/models/users.model';
 import BookModel from '@/models/book.model';
+import { DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST } from '@config';
 
 // Initialize and configure Sequelize
-const sequelize = new Sequelize.Sequelize('TestDB', 'sa', 'Test123@', {
-  host: 'localhost',
+const sequelize = new Sequelize.Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
+  host: DB_HOST,
   dialect: 'mssql', // Use 'mssql' for SQL Server
   define: {
     timestamps: true,
