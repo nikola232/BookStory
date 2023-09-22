@@ -20,7 +20,7 @@ export default function SearchAppBar() {
   const addBookPath = pathname !== '/books/addBook';
 
   const handleLogout = () => {
-    deleteCookie('access');
+    deleteCookie('access_access');
     deleteCookie('user_data');
     window.location.reload();
   };

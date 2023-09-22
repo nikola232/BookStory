@@ -1,5 +1,4 @@
 const apiBase = `http://localhost:3000`;
-
 const defaultPostHeaders = {
   'Content-Type': 'application/json',
 }

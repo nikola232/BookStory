@@ -1,6 +1,5 @@
-export const ACCESS_TOKEN = 'access';
+export const ACCESS_TOKEN = 'access_access';
 export const USER_DATA = 'user_data';
-
 export const getCookie = (cookie: string) => {
   const ca: Array<string> = document.cookie.split(';');
   const caLen: number = ca.length;
@@ -21,11 +20,11 @@ export const deleteCookie = (cookie: string) => {
   document.cookie = `${cookie}=; expires=${new Date(0).toUTCString()}; path=/;`;
 }
 
-export const setCookie = (cookie: string, value: string, expireDays: number, path = '') => {
-  const d: Date = new Date();
-  d.setTime(d.getTime() + expireDays);
-  const expires = `expires=${d.toUTCString()}`;
-  document.cookie = `${cookie}=${value}; ${expires}${path.length > 0 ? `; path=${path}` : ''}`;
+export const setCookie = (cookie: string, value: string, expiresIn: number, path = '') => {
+  const date: Date = new Date();
+  date.setTime(date.getTime() + expiresIn * 1000);
+  const expires = `expires=${date.toUTCString()}`;
+  document.cookie = `${cookie}=${value}; ${expires}; path=/`;
 }
 
 export const setUserData = (name: string, value: any) => {
@@ -40,8 +39,9 @@ export const getToken = (name: string) => {
   return false;
 }
 
-export const setToken = (name: string, value: any) => {
-  setCookie(name, encodeCookie(value.token), value.expiresIn)
+export const setToken = (name: string, value: object) => {
+  const { expiresIn, token }: any = value;
+  setCookie(name, encodeCookie(token), expiresIn)
 }
 
 export const encodeCookie = (value: any) => {
